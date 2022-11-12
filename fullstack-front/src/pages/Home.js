@@ -17,6 +17,11 @@ export default function Home() {
         setUsers(result.data);
     };
 
+    const deleteUser = async (id) => {
+        await axios.delete(`http://localhost:8080/user/${id}`);
+        loadUsers();
+    };
+
     return (
         <div className='container'>
             <div className='py-4'>
@@ -46,7 +51,12 @@ export default function Home() {
                                         >
                                             Edit
                                         </Link>
-                                        <button className="btn btn-danger mx-2">Delete</button>
+                                        <button
+                                            className="btn btn-danger mx-2"
+                                            onClick={() => deleteUser(user.id)}
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             ))
